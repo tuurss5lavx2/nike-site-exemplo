@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nike Store</title>
+    <style>
+        /* Reset e Base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            transition: background 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        }
+
+        /* Cabeçalho */
+        header {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            padding: 18px 50px;
+            width: 100%;
+            z-index: 10;
+            color: #000;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* ============================================== */
+        /* LOGO NIKE - MINIMALISTA E ELEGANTE */
+        /* ============================================== */
+        .logo {
+            justify-self: start;
+            font-weight: 900;
+            font-size: 20px;
+            letter-spacing: -0.5px;
+            cursor: pointer;
+            font-family: Georgia, 'Times New Roman', serif;
+            transition: color 0.3s ease;
+            position: relative;
+            text-decoration: none;
+            color: #000;
+            padding: 4px 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        /* Texto principal */
+        .logo .logo-text {
+            font-size: 22px;
+            font-weight: 900;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            font-family: 'Arial Black', Impact, sans-serif;
+            transition: all 0.4s ease;
+            color: #000;
+            position: relative;
+        }
+
+        /* Linha minimalista embaixo */
+        .logo .underline {
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: #000;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .logo:hover .underline {
+            transform: scaleX(1);
+        }
+
+        /* Barra separadora minimalista */
+        .logo .divider {
+            width: 1px;
+            height: 18px;
+            background: rgba(0, 0, 0, 0.15);
+            transition: all 0.4s ease;
+        }
+
+        /* Subtítulo minimalista */
+        .logo .subtitle {
+            font-size: 8px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: rgba(0, 0, 0, 0.3);
+            font-weight: 400;
+            font-family: 'Segoe UI', sans-serif;
+            transition: all 0.4s ease;
+        }
+
+        /* Ponto decorativo */
+        .logo .dot {
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: #000;
+            opacity: 0.15;
+            transition: all 0.4s ease;
+        }
+
+        /* Hover do logo - efeito sutil */
+        .logo:hover .logo-text {
+            letter-spacing: 6px;
+            color: #000;
+        }
+
+        .logo:hover .subtitle {
+            color: rgba(0, 0, 0, 0.6);
+            letter-spacing: 4px;
+        }
+
+        .logo:hover .dot {
+            opacity: 0.4;
+            transform: scale(1.3);
+        }
+
+        .logo:hover .divider {
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        /* ============================================== */
+        /* NAV EXCLUSIVO - ESTILO FUTURISTA/CYBERPUNK */
+        /* SOMENTE DESKTOP */
+        /* ============================================== */
+        nav {
+            justify-self: center;
+            position: relative;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2px;
+            padding: 0;
+            background: transparent;
+            position: relative;
+        }
+
+        nav ul li {
+            position: relative;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: rgba(0, 0, 0, 0.5);
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            padding: 12px 22px;
+            display: block;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
+            margin: 0 -4px;
+            z-index: 1;
+            text-shadow: 0 0 20px rgba(0, 200, 255, 0);
+        }
+
+        nav ul li a::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(135deg, #00d4ff, #7b2ffc, #00d4ff);
+            background-size: 300% 300%;
+            clip-path: polygon(12px 0, 100% 0, calc(100% - 12px) 100%, 0 100%);
+            z-index: -1;
+            opacity: 0;
+            transition: all 0.5s ease;
+            animation: neonGlow 3s ease infinite;
+        }
+
+        @keyframes neonGlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        nav ul li a:hover::before {
+            opacity: 1;
+            box-shadow: 0 0 30px rgba(0, 212, 255, 0.3), 0 0 60px rgba(123, 47, 252, 0.2);
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 2px,
+                rgba(0, 212, 255, 0.03) 2px,
+                rgba(0, 212, 255, 0.03) 4px
+            );
+            pointer-events: none;
+            clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        nav ul li a:hover::after {
+            opacity: 1;
+        }
+
+        nav ul li a:hover {
+            color: #00d4ff;
+            transform: translateY(-3px) scale(1.02);
+            letter-spacing: 3px;
+            text-shadow: 0 0 30px rgba(0, 212, 255, 0.3);
+            background: rgba(255, 255, 255, 0.6);
+            border-color: rgba(0, 212, 255, 0.3);
+        }
+
+        nav ul li:first-child a {
+            color: #00d4ff;
+            background: rgba(0, 212, 255, 0.1);
+            border-color: rgba(0, 212, 255, 0.2);
+            text-shadow: 0 0 30px rgba(0, 212, 255, 0.2);
+        }
+
+        nav ul li:first-child a::before {
+            opacity: 0.6;
+        }
+
+        nav ul li a .status {
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #00d4ff;
+            margin-left: 6px;
+            vertical-align: middle;
+            box-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.3; transform: scale(0.6); }
+        }
+
+        nav ul li a .binary {
+            font-size: 7px;
+            opacity: 0.2;
+            margin-left: 4px;
+            font-weight: 300;
+            letter-spacing: 0;
+            color: #00d4ff;
+            display: inline-block;
+        }
+
+        nav ul li:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            right: -2px;
+            top: 20%;
+            height: 60%;
+            width: 1px;
+            background: linear-gradient(to bottom, transparent, rgba(0, 212, 255, 0.2), transparent);
+            z-index: 5;
+        }
+
+        /* ============================================== */
+        /* FIM DO NAV EXCLUSIVO */
+        /* ============================================== */
+
+        .header-icons {
+            justify-self: end;
+            display: flex;
+            gap: 16px;
+        }
+
+        .header-icons svg {
+            width: 17px;
+            height: 17px;
+            cursor: pointer;
+            stroke: #000;
+            stroke-width: 1.5;
+            fill: none;
+            transition: all 0.3s ease;
+        }
+
+        .header-icons svg:hover {
+            stroke: #00d4ff;
+            transform: scale(1.15) rotate(-10deg);
+            filter: drop-shadow(0 0 10px rgba(0, 212, 255, 0.3));
+        }
+
+        /* Área Principal */
+        main {
+            flex: 1;
+            position: relative;
+            width: 100%;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        /* Texto NIKE Gigante */
+        .background-text {
+            position: absolute;
+            top: 44%;
+            left: 50%;
+            transform: translate(-50%, -50%) scaleX(1.02);
+            font-size: 22vw;
+            font-weight: 900;
+            letter-spacing: -5px;
+            z-index: 1;
+            user-select: none;
+            line-height: 0.8;
+            white-space: nowrap;
+            color: #000;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            transition: color 0.8s ease;
+        }
+
+        /* Container do Tênis */
+        .shoe-container {
+            position: absolute;
+            left: 50%;
+            top: 43%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+            width: 38vw;
+            max-width: 600px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            filter: drop-shadow(10px 18px 18px rgba(0, 0, 0, 0.12));
+        }
+
+        .shoe-container img {
+            width: 100%;
+            height: auto;
+            transition: transform 0.6s ease-in-out, opacity 0.4s ease;
+        }
+
+        /* Animações */
+        .anim-slide-in {
+            animation: slideIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translate(var(--x), var(--y)) rotate(var(--rot)) scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: translate(var(--x), var(--y)) rotate(var(--rot)) scale(var(--scale));
+            }
+        }
+
+        .anim-rotate-in {
+            animation: rotateIn 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+        @keyframes rotateIn {
+            from {
+                opacity: 0;
+                transform: translate(var(--x), var(--y)) rotate(calc(var(--rot) + 20deg)) scale(0.4) perspective(1000px) rotateY(-90deg);
+            }
+            to {
+                opacity: 1;
+                transform: translate(var(--x), var(--y)) rotate(var(--rot)) scale(var(--scale)) perspective(1000px) rotateY(0deg);
+            }
+        }
+
+        /* Texto Inferior Esquerdo */
+        .product-info {
+            position: absolute;
+            bottom: 38px;
+            left: 50px;
+            z-index: 3;
+            width: 230px;
+            transition: opacity 0.4s ease;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .product-info h1 {
+            font-size: 22px;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 14px;
+            letter-spacing: -0.5px;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        }
+
+        .product-info p {
+            font-size: 11px;
+            color: rgba(0, 0, 0, 0.62);
+            line-height: 1.35;
+            margin-bottom: 16px;
+        }
+
+        .product-info a {
+            font-size: 10px;
+            font-weight: 800;
+            color: #000;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .product-info a::before {
+            content: '▸ ';
+            color: #00d4ff;
+            transition: all 0.3s ease;
+        }
+
+        .product-info a:hover {
+            color: #00d4ff;
+            letter-spacing: 1px;
+        }
+
+        .product-info a:hover::before {
+            content: '▸▸ ';
+        }
+
+        /* ============================================== */
+        /* BOTÕES DE NAVEGAÇÃO - SETAS COM CONTORNO PRETO */
+        /* ============================================== */
+        .nav-buttons {
+            position: absolute;
+            bottom: 58px;
+            right: 50px;
+            display: flex;
+            gap: 16px;
+            z-index: 3;
+        }
+
+        .nav-btn {
+            width: 50px;
+            height: 50px;
+            border: 2px solid rgba(0, 0, 0, 0.5);
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            border-radius: 0;
+            clip-path: polygon(0 0, 100% 0, 85% 100%, 15% 100%);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .nav-btn::before {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            background: linear-gradient(135deg, #00d4ff, #7b2ffc, #00d4ff);
+            background-size: 300% 300%;
+            clip-path: polygon(2px 0, 100% 0, calc(100% - 2px) 100%, 0 100%);
+            z-index: -1;
+            opacity: 0;
+            transition: all 0.5s ease;
+            animation: neonGlow 3s ease infinite;
+        }
+
+        .nav-btn:hover::before {
+            opacity: 1;
+        }
+
+        .nav-btn:hover {
+            transform: scale(1.1) translateY(-3px);
+            background: rgba(0, 212, 255, 0.15);
+            border-color: rgba(0, 212, 255, 0.6);
+            box-shadow: 0 8px 40px rgba(0, 212, 255, 0.2), inset 0 0 30px rgba(0, 212, 255, 0.05);
+        }
+
+        .nav-btn:active {
+            transform: scale(0.92);
+        }
+
+        .nav-btn svg {
+            width: 18px;
+            height: 18px;
+            stroke: #000000;
+            stroke-width: 2.5;
+            fill: none;
+            transition: all 0.4s ease;
+            filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.3));
+        }
+
+        .nav-btn:hover svg {
+            stroke: #00d4ff;
+            transform: scale(1.15);
+            filter: drop-shadow(0 0 15px rgba(0, 212, 255, 0.5));
+        }
+
+        .nav-btn .btn-label {
+            position: absolute;
+            bottom: -22px;
+            font-size: 8px;
+            font-weight: 700;
+            color: rgba(0, 0, 0, 0.4);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover .btn-label {
+            color: #00d4ff;
+            letter-spacing: 3px;
+        }
+
+        .nav-buttons::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 1px;
+            height: 30px;
+            background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.2), transparent);
+        }
+
+        /* ============================================== */
+        /* FIM DOS BOTÕES DE NAVEGAÇÃO */
+        /* ============================================== */
+
+        /* ========================================= */
+        /* AJUSTES PARA MOBILE (CELULARES) */
+        /* ========================================= */
+        @media (max-width: 768px) {
+
+            nav {
+                display: none;
+            }
+
+            header {
+                padding: 20px 25px;
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .logo .logo-text {
+                font-size: 18px;
+                letter-spacing: 3px;
+            }
+
+            .logo .subtitle {
+                display: none;
+            }
+
+            .logo .divider {
+                display: none;
+            }
+
+            .logo .dot {
+                display: none;
+            }
+
+            .header-icons {
+                gap: 20px;
+            }
+
+            .header-icons svg {
+                width: 22px;
+                height: 22px;
+            }
+
+            /* =========================================
+               ÁREA VISUAL DO TÊNIS
+               ========================================= */
+
+            .background-text {
+                font-size: 45vw;
+                top: 35%;
+                letter-spacing: -5px;
+            }
+
+            .shoe-container {
+                width: 82vw;
+                max-width: 380px;
+                top: 36%;
+            }
+
+            /* =========================================
+               INFORMAÇÕES DO PRODUTO
+               ========================================= */
+
+            .product-info {
+                left: 25px;
+                bottom: 26px;
+                width: calc(100% - 50px);
+                max-width: none;
+                z-index: 3;
+            }
+
+            .product-info h1 {
+                font-size: 26px;
+                line-height: 1;
+                margin-bottom: 10px;
+                white-space: nowrap;
+            }
+
+            .product-info p {
+                font-size: 13px;
+                line-height: 1.4;
+                width: 100%;
+                max-width: 340px;
+                margin-bottom: 18px;
+            }
+
+            .product-info a {
+                font-size: 13px;
+                white-space: nowrap;
+            }
+
+            /* =========================================
+               SETAS
+               ========================================= */
+
+            .nav-buttons {
+                right: 25px;
+                bottom: 18px;
+                gap: 12px;
+                z-index: 4;
+            }
+
+            .nav-buttons::before {
+                height: 25px;
+            }
+
+            .nav-btn {
+                width: 50px;
+                height: 50px;
+                clip-path: polygon(0 0, 100% 0, 85% 100%, 15% 100%);
+                background: rgba(255, 255, 255, 0.25);
+                backdrop-filter: blur(15px);
+                -webkit-backdrop-filter: blur(15px);
+                border: 2px solid rgba(0, 0, 0, 0.4);
+            }
+
+            .nav-btn svg {
+                width: 18px;
+                height: 18px;
+                stroke: #000;
+                stroke-width: 2.5;
+            }
+
+            .nav-btn .btn-label {
+                display: none;
+            }
+
+            /* =========================================
+               TELAS MUITO PEQUENAS (até 380px)
+               ========================================= */
+
+            @media (max-width: 380px) {
+
+                .background-text {
+                    top: 34%;
+                }
+
+                .shoe-container {
+                    top: 35%;
+                    width: 80vw;
+                }
+
+                .product-info h1 {
+                    font-size: 23px;
+                }
+
+                .product-info p {
+                    font-size: 12px;
+                    line-height: 1.35;
+                    max-width: 100%;
+                }
+
+                .nav-buttons {
+                    right: 18px;
+                    gap: 9px;
+                }
+
+                .nav-btn {
+                    width: 46px;
+                    height: 46px;
+                }
+
+                .nav-btn svg {
+                    width: 17px;
+                    height: 17px;
+                }
+            }
+        }
+    </style>
+</head>
+<body id="body">
+
+    <header>
+        <div class="logo">
+            <span class="logo-text">NIKE</span>
+            <span class="dot"></span>
+            <span class="divider"></span>
+            <span class="subtitle">since 1964</span>
+            <span class="underline"></span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">New Collection <span class="status"></span><span class="binary">01</span></a></li>
+                <li><a href="#">Mens <span class="binary">10</span></a></li>
+                <li><a href="#">Womens <span class="binary">11</span></a></li>
+                <li><a href="#">Kids <span class="binary">100</span></a></li>
+                <li><a href="#">Stories <span class="binary">101</span></a></li>
+                <li><a href="#">Blog <span class="binary">110</span></a></li>
+            </ul>
+        </nav>
+        <div class="header-icons">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </div>
+    </header>
+
+    <main>
+        <div class="background-text" id="bg-text">NIKE</div>
+
+        <div class="shoe-container">
+            <img id="shoe-img" src="img1.png" alt="Nike">
+        </div>
+
+        <div class="product-info" id="prod-info">
+            <h1 id="prod-title">NIKE AIR FORCE 1</h1>
+            <p>Lorem ipsum dolor sit amet consectetur. Bibendum nunc pellentesque in tincidunt tortor auctor tellus congue neque. Interdum donec sit egestas quam bibendum elementum</p>
+            <a href="#">SEE DETAILS &rarr;</a>
+        </div>
+
+        <div class="nav-buttons">
+            <button class="nav-btn" onclick="prevSlide()">
+                <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                <span class="btn-label">Anterior</span>
+            </button>
+            <button class="nav-btn" onclick="nextSlide()">
+                <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                <span class="btn-label">Próximo</span>
+            </button>
+        </div>
+    </main>
+
+    <script>
+        const products = [{
+            img: "img1.png",
+            title: "NIKE AIR FORCE 1",
+            bodyColor: "#ffffff",
+            textColor: "#000000",
+            bgTextColor: "#111111",
+            rotate: "-16deg",
+            scale: "1.05",
+            x: "5px",
+            y: "-5px"
+        }, {
+            img: "img2.png",
+            title: "NIKE AIR MAX 90",
+            bodyColor: "#b8e94a",
+            textColor: "#000000",
+            bgTextColor: "rgba(255, 255, 255, 0.32)",
+            rotate: "-7deg",
+            scale: "1.12",
+            x: "0px",
+            y: "-8px"
+        }, {
+            img: "img3.png",
+            title: "NIKE SB DUNK",
+            bodyColor: "linear-gradient(180deg, #df5046 0%, #d8697d 50%, #a89bdd 100%)",
+            textColor: "#111111",
+            bgTextColor: "rgba(255, 193, 193, 0.72)",
+            rotate: "-14deg",
+            scale: "1.08",
+            x: "0px",
+            y: "-8px"
+        }, {
+            img: "img4.png",
+            title: "NIKE AIR MAX 97",
+            bodyColor: "#0a0a0a",
+            textColor: "#ffffff",
+            bgTextColor: "rgba(255, 255, 255, 0.06)",
+            rotate: "-10deg",
+            scale: "1.1",
+            x: "0px",
+            y: "-6px"
+        }];
+
+        let currentIndex = 0;
+        const body = document.getElementById('body');
+        const bgText = document.getElementById('bg-text');
+        const shoeImg = document.getElementById('shoe-img');
+        const prodTitle = document.getElementById('prod-title');
+        const prodInfo = document.querySelector('.product-info');
+        const prodDesc = document.querySelector('.product-info p');
+        const prodLink = document.querySelector('.product-info a');
+
+        function updateContent() {
+            const product = products[currentIndex];
+
+            body.style.background = product.bodyColor;
+            bgText.style.color = product.bgTextColor;
+            prodTitle.textContent = product.title;
+            prodTitle.style.color = product.textColor;
+
+            const isDark = currentIndex === 3;
+            
+            if (isDark) {
+                prodDesc.style.color = "rgba(255, 255, 255, 0.7)";
+                prodLink.style.color = "#ffffff";
+                document.querySelectorAll('.header-icons svg').forEach(svg => {
+                    svg.style.stroke = "#ffffff";
+                });
+                document.querySelectorAll('nav ul li a').forEach(a => {
+                    a.style.color = "rgba(255, 255, 255, 0.4)";
+                    a.style.background = "rgba(255, 255, 255, 0.05)";
+                });
+                document.querySelectorAll('nav ul li:first-child a').forEach(a => {
+                    a.style.color = "#00d4ff";
+                    a.style.background = "rgba(0, 212, 255, 0.1)";
+                });
+                document.querySelector('.logo .logo-text').style.color = "#ffffff";
+                document.querySelector('.logo .underline').style.background = "#ffffff";
+                document.querySelector('.logo .dot').style.background = "#ffffff";
+                document.querySelector('.logo .divider').style.background = "rgba(255,255,255,0.2)";
+                document.querySelector('.logo .subtitle').style.color = "rgba(255,255,255,0.4)";
+                document.querySelectorAll('.nav-btn').forEach(btn => {
+                    btn.style.borderColor = "rgba(255, 255, 255, 0.5)";
+                    btn.style.background = "rgba(255, 255, 255, 0.08)";
+                });
+                document.querySelectorAll('.nav-btn svg').forEach(svg => {
+                    svg.style.stroke = "#ffffff";
+                });
+                document.querySelectorAll('.nav-btn .btn-label').forEach(label => {
+                    label.style.color = "rgba(255, 255, 255, 0.4)";
+                });
+            } else {
+                prodDesc.style.color = "rgba(0, 0, 0, 0.62)";
+                prodLink.style.color = "#000000";
+                document.querySelectorAll('.header-icons svg').forEach(svg => {
+                    svg.style.stroke = "#000000";
+                });
+                document.querySelectorAll('nav ul li a').forEach(a => {
+                    a.style.color = "rgba(0, 0, 0, 0.4)";
+                    a.style.background = "rgba(255, 255, 255, 0.4)";
+                });
+                document.querySelectorAll('nav ul li:first-child a').forEach(a => {
+                    a.style.color = "#00d4ff";
+                    a.style.background = "rgba(0, 212, 255, 0.1)";
+                });
+                document.querySelector('.logo .logo-text').style.color = "#000000";
+                document.querySelector('.logo .underline').style.background = "#000000";
+                document.querySelector('.logo .dot').style.background = "#000000";
+                document.querySelector('.logo .divider').style.background = "rgba(0,0,0,0.15)";
+                document.querySelector('.logo .subtitle').style.color = "rgba(0,0,0,0.3)";
+                document.querySelectorAll('.nav-btn').forEach(btn => {
+                    btn.style.borderColor = "rgba(0, 0, 0, 0.5)";
+                    btn.style.background = "rgba(255, 255, 255, 0.2)";
+                });
+                document.querySelectorAll('.nav-btn svg').forEach(svg => {
+                    svg.style.stroke = "#000000";
+                });
+                document.querySelectorAll('.nav-btn .btn-label').forEach(label => {
+                    label.style.color = "rgba(0, 0, 0, 0.4)";
+                });
+            }
+
+            shoeImg.src = product.img;
+            shoeImg.style.setProperty('--x', product.x);
+            shoeImg.style.setProperty('--y', product.y);
+            shoeImg.style.setProperty('--rot', product.rotate);
+            shoeImg.style.setProperty('--scale', product.scale);
+            shoeImg.style.transform = `translate(${product.x}, ${product.y}) rotate(${product.rotate}) scale(${product.scale})`;
+        }
+
+        function nextSlide() {
+            shoeImg.classList.remove('anim-rotate-in');
+            shoeImg.classList.add('anim-slide-in');
+            prodInfo.style.opacity = '0';
+
+            setTimeout(() => {
+                currentIndex = (currentIndex + 1) % products.length;
+                updateContent();
+
+                shoeImg.classList.remove('anim-slide-in');
+                void shoeImg.offsetWidth;
+                shoeImg.classList.add('anim-slide-in');
+                prodInfo.style.opacity = '1';
+            }, 400);
+        }
+
+        function prevSlide() {
+            shoeImg.classList.remove('anim-slide-in');
+            shoeImg.classList.add('anim-rotate-in');
+            prodInfo.style.opacity = '0';
+
+            setTimeout(() => {
+                currentIndex = (currentIndex - 1 + products.length) % products.length;
+                updateContent();
+
+                shoeImg.classList.remove('anim-rotate-in');
+                void shoeImg.offsetWidth;
+                shoeImg.classList.add('anim-rotate-in');
+                prodInfo.style.opacity = '1';
+            }, 400);
+        }
+
+        updateContent();
+    </script>
+
+</body>
+</html>
