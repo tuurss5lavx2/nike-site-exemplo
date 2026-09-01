@@ -35,7 +35,7 @@
         }
 
         /* ============================================== */
-        /* LOGO NIKE - MINIMALISTA E ELEGANTE */
+        /* LOGO NIKE - MINIMALISTA COM BOLINHA NEON */
         /* ============================================== */
         .logo {
             justify-self: start;
@@ -64,6 +64,40 @@
             transition: all 0.4s ease;
             color: #000;
             position: relative;
+        }
+
+        /* Bolinha neon estilo nav */
+        .logo .neon-dot {
+            display: inline-block;
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #00d4ff;
+            margin-right: 2px;
+            vertical-align: middle;
+            box-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+            animation: pulseDot 2s ease-in-out infinite;
+            flex-shrink: 0;
+            transition: all 0.4s ease;
+        }
+
+        @keyframes pulseDot {
+            0%, 100% { 
+                opacity: 1; 
+                transform: scale(1);
+                box-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+            }
+            50% { 
+                opacity: 0.3; 
+                transform: scale(0.6);
+                box-shadow: 0 0 20px rgba(0, 212, 255, 0.2);
+            }
+        }
+
+        .logo:hover .neon-dot {
+            animation-duration: 1s;
+            transform: scale(1.3);
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.8), 0 0 40px rgba(123, 47, 252, 0.3);
         }
 
         /* Linha minimalista embaixo */
@@ -102,16 +136,6 @@
             transition: all 0.4s ease;
         }
 
-        /* Ponto decorativo */
-        .logo .dot {
-            width: 4px;
-            height: 4px;
-            border-radius: 50%;
-            background: #000;
-            opacity: 0.15;
-            transition: all 0.4s ease;
-        }
-
         /* Hover do logo - efeito sutil */
         .logo:hover .logo-text {
             letter-spacing: 6px;
@@ -121,11 +145,6 @@
         .logo:hover .subtitle {
             color: rgba(0, 0, 0, 0.6);
             letter-spacing: 4px;
-        }
-
-        .logo:hover .dot {
-            opacity: 0.4;
-            transform: scale(1.3);
         }
 
         .logo:hover .divider {
@@ -577,8 +596,9 @@
                 display: none;
             }
 
-            .logo .dot {
-                display: none;
+            .logo .neon-dot {
+                width: 6px;
+                height: 6px;
             }
 
             .header-icons {
@@ -721,8 +741,8 @@
 
     <header>
         <div class="logo">
+            <span class="neon-dot"></span>
             <span class="logo-text">NIKE</span>
-            <span class="dot"></span>
             <span class="divider"></span>
             <span class="subtitle">since 1964</span>
             <span class="underline"></span>
@@ -847,9 +867,10 @@
                 });
                 document.querySelector('.logo .logo-text').style.color = "#ffffff";
                 document.querySelector('.logo .underline').style.background = "#ffffff";
-                document.querySelector('.logo .dot').style.background = "#ffffff";
                 document.querySelector('.logo .divider').style.background = "rgba(255,255,255,0.2)";
                 document.querySelector('.logo .subtitle').style.color = "rgba(255,255,255,0.4)";
+                document.querySelector('.logo .neon-dot').style.background = "#00d4ff";
+                document.querySelector('.logo .neon-dot').style.boxShadow = "0 0 10px rgba(0, 212, 255, 0.5)";
                 document.querySelectorAll('.nav-btn').forEach(btn => {
                     btn.style.borderColor = "rgba(255, 255, 255, 0.5)";
                     btn.style.background = "rgba(255, 255, 255, 0.08)";
@@ -876,9 +897,10 @@
                 });
                 document.querySelector('.logo .logo-text').style.color = "#000000";
                 document.querySelector('.logo .underline').style.background = "#000000";
-                document.querySelector('.logo .dot').style.background = "#000000";
                 document.querySelector('.logo .divider').style.background = "rgba(0,0,0,0.15)";
                 document.querySelector('.logo .subtitle').style.color = "rgba(0,0,0,0.3)";
+                document.querySelector('.logo .neon-dot').style.background = "#00d4ff";
+                document.querySelector('.logo .neon-dot').style.boxShadow = "0 0 10px rgba(0, 212, 255, 0.5)";
                 document.querySelectorAll('.nav-btn').forEach(btn => {
                     btn.style.borderColor = "rgba(0, 0, 0, 0.5)";
                     btn.style.background = "rgba(255, 255, 255, 0.2)";
